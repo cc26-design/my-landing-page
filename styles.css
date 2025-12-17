@@ -1,0 +1,370 @@
+/* 基礎設定與字體引入 */
+:root {
+    /* --- 顏色變數修正 --- */
+    
+    /* 亮色主題顏色 (活力珊瑚色調) */
+    --light-bg: #fdf6f3; 
+    --light-text: #4a4a4a; 
+    --light-accent: #ff9f8c; /* 活力珊瑚色 (按鈕主要色) */
+    --light-pill-bg: #e0d0c3; /* 趣味測驗小框背景 */
+    
+    /* 深色主題顏色 (深墨綠 + 祖母綠調) */
+    --dark-bg: #1e332c; /* 深墨綠 */
+    --dark-text: #f0f0f0; /* 白字 */
+    --dark-accent-green-text: #599c7f; /* 低飽和祖母綠 (用於標題字色) */
+    --dark-btn-color: #8bcd89; /* 按鈕顏色 (亮綠色調，靠近 LINE 綠) */
+    --hover-pink: #c989c7; 
+    
+    /* 通用字體 */
+    --font-heading: 'Playfair Display', serif; 
+    --font-body: 'Noto Sans TC', sans-serif; 
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    background-color: #ffffff; 
+}
+
+/* 兩頁 Section 基礎樣式 */
+.page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    position: relative;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    gap: 60px; 
+    align-items: center;
+    justify-content: center; /* 確保內容居中 */
+}
+
+/* --- 第一頁：亮色主題 --- */
+.light-theme {
+    background-color: var(--light-bg);
+    color: var(--light-text);
+}
+
+.quiz-layout {
+    /* 修正點 1：文字 (1.4份) : 圖片 (1份) */
+    grid-template-columns: 1.4fr 1fr; 
+}
+
+/* 讓文字內容區塊往中間靠 (不會過度貼邊) */
+.quiz-content {
+    max-width: 550px; 
+    margin: 0 auto;
+    display: flex; 
+    flex-direction: column;
+    align-items: flex-start; 
+}
+/* 第一頁圖片往左一些，圖片框大一點 */
+.quiz-image-style {
+    background-color: #f5ece9; 
+    aspect-ratio: 1 / 1; 
+    justify-self: start; /* 讓圖片靠左側網格線對齊 */
+    width: 100%; 
+    max-width: 450px; /* 圖片框最大寬度 */
+}
+
+/* 趣味測驗小框框樣式 */
+.quiz-pill {
+    display: inline-block; 
+    padding: 5px 15px;
+    border-radius: 50px;
+    background-color: var(--light-pill-bg);
+    font-weight: 500;
+    font-size: 0.95rem; 
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 1;
+    color: var(--light-text);
+    margin-bottom: 30px; 
+}
+
+/* --- 通用排版元素 字體大小 --- */
+.main-title {
+    font-family: var(--font-heading);
+    /* 亮色主題標題大小 */
+    font-size: 3.5rem; 
+    line-height: 1.2;
+    margin-bottom: 20px;
+    font-weight: 700;
+    /* 火ICON往右微調 */
+    padding-left: 20px; 
+    margin-left: -20px;
+}
+
+.description {
+    font-size: 1.15rem; 
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+
+.fire-icon {
+    color: var(--light-accent); 
+    font-size: 2.8rem; 
+    /* 火ICON往右微調 */
+    margin-right: -10px; 
+    /* 垂直對齊 */
+    vertical-align: 0em; 
+}
+
+/* --- 圖片佔位背景框 (保持可見) --- */
+.image-placeholder {
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
+    overflow: hidden;
+    display: flex; 
+}
+
+.photo-image-style {
+    background-color: #2c473c; 
+    aspect-ratio: 4 / 5; 
+}
+
+
+/* --- 第二頁：深色主題 --- */
+.dark-theme {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+}
+
+.photo-layout {
+    /* 文字 (1份) : 圖片 (1.2份) */
+    grid-template-columns: 1fr 1.2fr; 
+}
+/* 第二頁圖文一起往右微調 */
+#photo-page .container {
+    margin-left: 30px; 
+    margin-right: auto;
+}
+
+/* 確保 "你的" 使用白色字 */
+.photo-content .main-title {
+    color: var(--dark-text); 
+    /* 修正點 2：字體加大一些些 */
+    font-size: 3.8rem;
+}
+
+/* 標題文字修正：高價值形象 (祖母綠字，無背景) */
+.highlight-text {
+    font-weight: 700;
+    color: var(--dark-accent-green-text); 
+    background-color: transparent;
+    padding: 0;
+}
+.highlight-text-no-bg {
+    font-weight: 700;
+    color: var(--dark-accent-green-text); 
+    background-color: transparent;
+    padding: 0;
+}
+
+
+.sub-features p {
+    font-size: 1.15rem; 
+    margin-bottom: 10px; 
+}
+
+/* --- 按鈕樣式 --- */
+.button {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background-color 0.3s, transform 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: none !important; 
+    border-radius: 50px; 
+}
+
+/* 第一頁：加大按鈕 */
+.large-button-quiz {
+    font-size: 1.1rem;
+    padding: 15px 30px;
+}
+
+.primary-button {
+    background-color: var(--light-accent);
+    color: #ffffff;
+}
+
+.primary-button:hover {
+    background-color: #e08b7d;
+    transform: translateY(-2px);
+}
+
+.primary-button i {
+    margin-left: 8px;
+}
+
+/* 第二頁：加大按鈕 */
+.secondary-button {
+    background-color: var(--dark-btn-color); 
+    color: var(--dark-bg); 
+}
+
+.large-button {
+    font-size: 1.3rem;
+    padding: 18px 40px;
+    margin-top: 15px;
+}
+
+.large-button:hover {
+    background-color: #79c176; 
+    transform: translateY(-2px);
+}
+/* 讓 LINE Icon 和 箭頭都有間距 */
+.large-button .fab {
+    font-size: 1.3em;
+    margin-right: 8px;
+}
+
+.large-button .fas {
+    font-size: 1.3em;
+    margin-left: 8px;
+    margin-right: 0;
+}
+
+/* --- 頁面跳轉箭頭 (已修復) --- */
+.scroll-down-arrow {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 45px; 
+    height: 45px; 
+    background-color: var(--light-accent);
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
+    font-size: 1.2rem;
+    z-index: 10; 
+}
+
+.scroll-down-arrow:hover {
+    opacity: 0.8;
+    transform: translateY(5px) translateX(-50%);
+}
+
+/* --- 頁尾社群 Icon (保持穩定) --- */
+.social-footer {
+    padding: 30px 20px;
+    text-align: center;
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+}
+
+.social-icons {
+    margin-bottom: 15px;
+}
+
+.social-footer a {
+    color: var(--dark-text);
+    font-size: 1.5rem; 
+    margin: 0 10px;
+    width: 45px;
+    height: 45px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--dark-text); 
+    border-radius: 50%;
+    transition: all 0.3s;
+}
+
+.social-footer a:hover {
+    color: var(--dark-bg); 
+    background-color: var(--hover-pink); 
+    border-color: var(--hover-pink);
+    transform: scale(1.1);
+}
+
+.copyright {
+    margin-top: 15px;
+    font-size: 0.85rem;
+    opacity: 0.6;
+}
+
+/* --- RWD 響應式設計 --- */
+@media (max-width: 900px) {
+    /* RWD 模式下，確保內容居中，並取消所有位移 */
+    #photo-page .container,
+    .container {
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .main-title {
+        font-size: 2.5rem;
+        padding-left: 0;
+        margin-left: 0;
+    }
+    
+    .quiz-layout, .photo-layout {
+        grid-template-columns: 1fr; 
+        padding-top: 50px;
+        gap: 30px;
+    }
+    
+    .quiz-content {
+        order: 2; 
+        text-align: center;
+        max-width: 100%; 
+        align-items: center; /* RWD 時居中 */
+    }
+
+    .quiz-image-style {
+        order: 1; 
+        max-width: 80%; /* 確保手機圖片不佔滿全寬 */
+    }
+    
+    .photo-content {
+        order: 2;
+        text-align: center;
+    }
+    
+    /* RWD 模式下的第二頁標題大小 */
+    .photo-content .main-title {
+        font-size: 2.8rem;
+    }
+    
+    .photo-image-style {
+        order: 1;
+    }
+
+    .button {
+        display: block; 
+        width: 80%;
+        max-width: 300px;
+        margin: 20px auto 0;
+    }
+
+    .quiz-pill {
+        margin: 0 auto 30px; 
+        float: none; 
+    }
+}
