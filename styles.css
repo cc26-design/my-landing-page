@@ -16,8 +16,8 @@
     --hover-pink: #c989c7; 
     
     /* 通用字體 */
-    --font-heading: 'Playfair Display', 'Noto Serif TC', 'PingFang TC', 'Microsoft JhengHei', serif; 
-    --font-body: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', 'Heiti TC', sans-serif; 
+    --font-heading: 'Playfair Display', serif; 
+    --font-body: 'Noto Sans TC', sans-serif; 
 }
 
 * {
@@ -104,19 +104,9 @@ body {
     line-height: 1.2;
     margin-bottom: 20px;
     font-weight: 700;
-    padding-left: 0;
-    margin-left: 0;
-}
-
-/* Utility: keep text on one line */
-.nowrap { white-space: nowrap; }
-
-/* Second page: make the second line a bit smaller */
-.photo-title .title-line2 { 
-    display: inline-block;
-    font-size: 0.75em;
-    font-weight: 500;
-    letter-spacing: 0.5px;
+    /* 火ICON往右微調 */
+    padding-left: 20px; 
+    margin-left: -20px;
 }
 
 .description {
@@ -129,8 +119,9 @@ body {
 .fire-icon {
     color: var(--light-accent); 
     font-size: 2.8rem; 
-    margin-right: 10px;
-/* 垂直對齊 */
+    /* 火ICON往右微調 */
+    margin-right: -10px; 
+    /* 垂直對齊 */
     vertical-align: 0em; 
 }
 
@@ -340,14 +331,14 @@ body {
     }
     
     .quiz-content {
-        order: 1; 
+        order: 2; 
         text-align: center;
         max-width: 100%; 
         align-items: center; /* RWD 時居中 */
     }
 
     .quiz-image-style {
-        order: 2; 
+        order: 1; 
         max-width: 80%; /* 確保手機圖片不佔滿全寬 */
     }
     
@@ -376,8 +367,65 @@ body {
         margin: 0 auto 30px; 
         float: none; 
     }
-
-    .photo-title .title-line2 { font-size: 0.7em; }
-    .photo-title .nowrap { display: inline-block; }
 }
-.quiz-title { letter-spacing: 0.5px; }
+
+/* =========================
+   📱 Mobile Only Adjustments
+   不影響電腦版，只針對手機
+========================= */
+@media (max-width: 768px) {
+
+  /* 第一頁：文字在上、圖片在下 */
+  .quiz-layout {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .quiz-content {
+    order: 1;
+  }
+
+  .quiz-image-style {
+    order: 2;
+    margin-top: 24px;
+  }
+
+  /* 「你是哪種小說女主？」不要斷行 */
+  .main-title br {
+    display: none;
+  }
+
+  /* 火 icon 跟文字保持距離 */
+  .fire-icon {
+    margin-right: 0.4em;
+  }
+
+  /* 第二頁：標題字級層次 */
+  #photo-page .main-title {
+    font-size: 1.8rem;
+    line-height: 1.3;
+  }
+
+  #photo-page .main-title span {
+    white-space: nowrap;
+  }
+
+  /* 副標「值得被專業定義」縮小 */
+  #photo-page .main-title::after {
+    content: "值得被專業定義";
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-top: 0.4em;
+  }
+
+  /* 手機字體 fallback（避免新細明體） */
+  body {
+    font-family: "Noto Sans TC",
+                 "PingFang TC",
+                 "Microsoft JhengHei",
+                 "Heiti TC",
+                 Arial,
+                 sans-serif;
+  }
+}
