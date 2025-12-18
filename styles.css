@@ -457,4 +457,11 @@ body {
   body{
     font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", Arial, sans-serif;
   }
+
+  /* ✅ 第一頁：button 往上移，卡在副標與圖片之間 */
+  #quiz-page .cta-button{
+     margin-top: 6px;     /* 減少跟副標的距離 */
+     margin-bottom: -12px; /* 往上拉，靠近圖片 */
+  }
+
 }
