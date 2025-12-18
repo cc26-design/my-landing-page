@@ -378,6 +378,16 @@ body {
   /* ✅ 1) 第一頁：字在上、圖在下（覆蓋你原本 RWD 的 order） */
   #quiz-page .quiz-content { order: 1; }
   #quiz-page .quiz-image-style { order: 2; margin-top: 18px; }
+  
+  #quiz-page .quiz-image-style {
+   display: flex;
+   justify-content: center;
+ }
+
+  #quiz-page .quiz-image-style img {
+   display: block;
+   margin: 0 auto;
+ }
 
   /* ✅ 2) 第一頁標題：保持兩排（用原本 <br>），但第二排不要再被擠成兩行 */
   #quiz-page .main-title{
@@ -394,7 +404,7 @@ body {
   #quiz-page .main-title { white-space: nowrap; }
 
   /* 火 icon 不要黏字（你原本 margin-right 是 -10px 會黏 :contentReference[oaicite:1]{index=1}） */
-  #quiz-page .fire-icon { margin-right: 0.35em; }
+  #quiz-page .fire-icon { margin-right: 0.2em; }
 
   /* ✅ 3) 第二頁：你的高價值形象大一點 + 固定兩排（<br>） */
   #photo-page .main-title{
