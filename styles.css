@@ -371,67 +371,89 @@ body {
 
 /* =========================
    📱 Mobile patch (override)
-   放在 styles.css 最底部，才能蓋過原本 @media(max-width:900px)
+   放在 styles.css 最底部
 ========================= */
 @media (max-width: 900px) {
 
-  /* ✅ 1) 第一頁：字在上、圖在下（覆蓋你原本 RWD 的 order） */
-  #quiz-page .quiz-content { order: 1; }
-  #quiz-page .quiz-image-style { order: 2; margin-top: 18px; }
-  
-  /* 讓整個區塊水平置中（最關鍵） */
+  /* ✅ 第一頁：改成直排 + 置中（你原本手機仍是 grid，所以你之前的置中不會生效） */
   #quiz-page .quiz-layout{
-   align-items: center;
- }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    padding-top: 38px; /* 原本手機 padding-top 50px，稍微往上 */
+  }
 
-  /* 覆蓋原本 justify-self:start，並讓圖片框置中 */
+  #quiz-page .quiz-content { order: 1; width: 100%; }
   #quiz-page .quiz-image-style{
-   justify-self: auto;
-   margin-left: auto;
-   margin-right: auto;
- }
+    order: 2;
+    width: 100%;
+    max-width: 80%;
+    margin: 0 auto;
+    justify-self: auto; /* 覆蓋原本 justify-self:start */
+  }
 
-  /* 確保圖片本身不會有奇怪的 inline 空隙 */
   #quiz-page .quiz-image-style img{
-   display: block;
- }
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
-  /* ✅ 2) 第一頁標題：保持兩排（用原本 <br>），但第二排不要再被擠成兩行 */
-  #quiz-page .main-title{
-    /* 你原本 main-title 用的是 heading serif，中文會 fallback 成像新細明體的襯線字 */
+  /* ✅ 第一頁標題：兩排固定 + 只放大「測測看」 */
+  #quiz-page .quiz-title{
     font-family: "Playfair Display", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", Arial, sans-serif;
-    /* 用 clamp 自動縮放：小螢幕會更小，避免「你是哪種小說女主？」被擠成兩行 */
-    font-size: clamp(1.7rem, 6.6vw, 2.25rem);
+    line-height: 1.12;
+    margin-bottom: 12px;
+    padding-left: 0;
+    white-space: normal; /* 讓 <br> 正常換行 */
+  }
+
+  #quiz-page .quiz-title .title-line1{
+    display: inline-flex;
+    align-items: center;
+    font-size: clamp(2.05rem, 7.2vw, 2.55rem); /* 測測看放大 */
+    white-space: nowrap;
+  }
+
+  #quiz-page .quiz-title .title-line2{
+    display: inline-block;
+    font-size: clamp(1.65rem, 6.2vw, 2.25rem); /* 你是哪種小說女主維持較小 */
+    white-space: nowrap; /* 避免第二排又被切成兩行 */
+  }
+
+  /* 火 icon 再靠近一點 */
+  #quiz-page .fire-icon{
+    margin-right: 0.12em;
+  }
+
+  /* ✅ 第一頁副標：小一點 + 往上移一點 */
+  #quiz-page .description{
+    font-size: 1.0rem;
+    margin-top: -6px;
+    margin-bottom: 18px;
+  }
+
+  /* ✅ 第二頁：你的高價值形象再大一點點（你之前說想大） */
+  #photo-page .main-title{
+    font-family: "Playfair Display", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", Arial, sans-serif;
+    font-size: clamp(2.2rem, 7.6vw, 3.15rem);
     line-height: 1.15;
     padding-left: 0;
     margin-left: 0;
+    white-space: nowrap;
   }
 
-  /* 讓每一行都不要自己再折行（<br> 還是會強制換行，所以仍是兩排） */
-  #quiz-page .main-title { white-space: nowrap; }
-
-  /* 火 icon 不要黏字（你原本 margin-right 是 -10px 會黏 :contentReference[oaicite:1]{index=1}） */
-  #quiz-page .fire-icon { margin-right: 0.2em; }
-
-  /* ✅ 3) 第二頁：你的高價值形象大一點 + 固定兩排（<br>） */
-  #photo-page .main-title{
-    font-family: "Playfair Display", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", Arial, sans-serif;
-    font-size: clamp(2.1rem, 7.2vw, 3.0rem); /* 你說想再大一點點 */
-    line-height: 1.18;
-    padding-left: 0;
-    margin-left: 0;
+  /* ✅ 第二頁副標：行距再小一點 + 兩行一起往上移 */
+  #photo-page .sub-features{
+    margin-top: -10px;
   }
-
-  /* 「你的 高價值形象」這行不要斷 */
-  #photo-page .main-title { white-space: nowrap; }
-
-  /* ✅ 4) 第二頁副標兩行（風格/妝髮/攝影一次搞定、來一場改變人生的寫真）行距縮小 */
   #photo-page .sub-features p{
-    line-height: 1.25;
-    margin-top: 6px;
+    line-height: 1.15;
+    margin-top: 4px;
   }
 
-  /* ✅ 5) 整體 body 字體 fallback（以防 Google Fonts 失敗） */
+  /* ✅ 字體 fallback（避免手機變襯線/新細明體感） */
   body{
     font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", Arial, sans-serif;
   }
