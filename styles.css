@@ -371,7 +371,7 @@ body {
 
 /* =========================
    📱 Mobile Only Adjustments
-   不影響電腦版，只針對手機
+   不影響電腦版
 ========================= */
 @media (max-width: 768px) {
 
@@ -390,33 +390,33 @@ body {
     margin-top: 24px;
   }
 
-  /* 「你是哪種小說女主？」不要斷行 */
-  .main-title br {
-    display: none;
+  /* ---------- 第一頁標題控制 ---------- */
+  /* 只保留原本的 <br>，不要自動亂換行 */
+  .main-title {
+    white-space: normal;
+    line-height: 1.3;
   }
 
-  /* 火 icon 跟文字保持距離 */
+  /* 火 icon 與文字距離 */
   .fire-icon {
     margin-right: 0.4em;
   }
 
-  /* 第二頁：標題字級層次 */
+  /* ---------- 第二頁標題控制 ---------- */
   #photo-page .main-title {
     font-size: 1.8rem;
     line-height: 1.3;
   }
 
+  /* 「你的 高價值形象」強制同一排 */
   #photo-page .main-title span {
     white-space: nowrap;
   }
 
-  /* 副標「值得被專業定義」縮小 */
-  #photo-page .main-title::after {
-    content: "值得被專業定義";
-    display: block;
+  /* 第二排「值得被專業定義」縮小 */
+  #photo-page .main-title br + * {
     font-size: 1.1rem;
     font-weight: 400;
-    margin-top: 0.4em;
   }
 
   /* 手機字體 fallback（避免新細明體） */
