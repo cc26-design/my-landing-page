@@ -379,14 +379,21 @@ body {
   #quiz-page .quiz-content { order: 1; }
   #quiz-page .quiz-image-style { order: 2; margin-top: 18px; }
   
-  #quiz-page .quiz-image-style {
-   display: flex;
-   justify-content: center;
+  /* 讓整個區塊水平置中（最關鍵） */
+  #quiz-page .quiz-layout{
+   align-items: center;
  }
 
-  #quiz-page .quiz-image-style img {
+  /* 覆蓋原本 justify-self:start，並讓圖片框置中 */
+  #quiz-page .quiz-image-style{
+   justify-self: auto;
+   margin-left: auto;
+   margin-right: auto;
+ }
+
+  /* 確保圖片本身不會有奇怪的 inline 空隙 */
+  #quiz-page .quiz-image-style img{
    display: block;
-   margin: 0 auto;
  }
 
   /* ✅ 2) 第一頁標題：保持兩排（用原本 <br>），但第二排不要再被擠成兩行 */
